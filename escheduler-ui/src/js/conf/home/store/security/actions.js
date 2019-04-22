@@ -90,7 +90,7 @@ export default {
    * @param "searchVal":string,
    * @param "pageSize":int
    */
-  getUsersListP ({ state }, payload) {
+  getUsersList ({ state }, payload) {
     return new Promise((resolve, reject) => {
       io.get(`users/list-paging`, payload, res => {
         resolve(res.data)
@@ -140,7 +140,7 @@ export default {
     }
 
     let param = {}
-    // Management user
+    // Manage user
     if (o.type === 'user') {
       param.alertgroupId = payload.id
     } else {
@@ -348,6 +348,54 @@ export default {
   getProcessWorkerList ({ state }, payload) {
     return new Promise((resolve, reject) => {
       io.get(`process/worker/list`, payload, res => {
+        resolve(res)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+  /**
+   * get queue list pages
+   */
+  getQueueListP ({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      io.get(`queue/list-paging`, payload, res => {
+        resolve(res.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+  /**
+   * create queue
+   */
+  createQueueQ ({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      io.post(`queue/create`, payload, res => {
+        resolve(res)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+  /**
+   * update queue
+   */
+  updateQueueQ ({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      io.post(`queue/update`, payload, res => {
+        resolve(res)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+  /**
+   * update queue
+   */
+  verifyQueueQ ({ state }, payload) {
+    return new Promise((resolve, reject) => {
+      io.post(`queue/verify-queue`, payload, res => {
         resolve(res)
       }).catch(e => {
         reject(e)
