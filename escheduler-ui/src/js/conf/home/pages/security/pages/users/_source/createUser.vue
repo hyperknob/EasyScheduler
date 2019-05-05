@@ -39,7 +39,7 @@
             </x-select>
           </template>
         </m-list-box-f>
-        <m-list-box-f>
+        <m-list-box-f v-if="isADMIN">
           <template slot="name"><b>*</b>{{$t('Queue')}}</template>
           <template slot="content">
             <x-select v-model="queueName">
@@ -127,7 +127,7 @@
       _verification () {
         let regEmail = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/ // eslint-disable-line
         // Mobile phone number regular
-        let regPhone = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/; // eslint-disable-line
+        let regPhone = /^1(3|4|5|6|7|8)\d{9}$/; // eslint-disable-line
 
         // user name
         if (!this.userName) {
